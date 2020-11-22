@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  node:
+    build:
+      context: .
+      dockerfile: ${PWD}/Dockerfile
+      args:
+        - project_dir=./project2
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+      - "8082:8082"
+    volumes:
+      - ${PWD}/project2:/home/node/app
+    stdin_open: true
+    tty: true
+    env_file:
+      - ${PWD}/nodejs.env
+
