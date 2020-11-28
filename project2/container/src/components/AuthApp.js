@@ -1,8 +1,8 @@
-import { mount } from 'marketing/MarketingApp';
-import React, {useRef, useEffect} from 'react';
-import { useHistory } from 'react-router-dom';
+import { mount } from "auth/AuthApp";
+import React, { useRef, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
-export default () => {
+export default ({ onSignIn }) => {
   const ref = useRef(null);
   const history = useHistory(); // a BrowserHistory
 
@@ -15,11 +15,12 @@ export default () => {
           history.push(nextPathName);
         }
       },
+      onSignIn,
     });
 
     // Notify marketing navigation changed
     history.listen(onParentNavigate);
-  },[]);
-  
+  }, []);
+
   return <div ref={ref} />;
-}
+};
